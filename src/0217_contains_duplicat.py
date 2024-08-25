@@ -14,7 +14,7 @@ tests = [
 ]
 
 
-def contains_duplicate_hashing(lst):
+def contains_duplicate_hashing(lst: list[int]) -> bool:
     """
     Time: O(n)
     Memo: O(n)
@@ -23,7 +23,7 @@ def contains_duplicate_hashing(lst):
     return n != len(set(lst))
 
 
-def contains_duplicate_naive(lst):
+def contains_duplicate_naive(lst: list[int]) -> bool:
     """
     Time: O(n^2)
     Memo: O(1)
@@ -35,7 +35,7 @@ def contains_duplicate_naive(lst):
     return False
 
 
-def contains_duplicate_sort(lst):
+def contains_duplicate_sort(lst: list[int]) -> bool:
     """
     Time: O(n log(n))
     Memo: O(1)
