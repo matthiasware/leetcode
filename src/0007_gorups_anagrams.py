@@ -73,7 +73,7 @@ def get_anagrams_no_sort(strings: list[str]) -> bool:
 if __name__ == "__main__":
     for strings, exp in tests:
         act = get_anagrams_no_sort(strings)
-        act = [sorted(l) for l in act]
+        act = [sorted(a) for a in act]
         act.sort()
         exp.sort()
         assert act == exp

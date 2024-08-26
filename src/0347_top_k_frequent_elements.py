@@ -41,7 +41,8 @@ def k_most_frequent(lst: list[int], k: int) -> list[int]:
     return topk
 
 
-def add_to_heap_if_bigger(heap: list[int], k: int, num: int, freq: int) -> None:
+def add_to_heap_if_bigger(heap: list[int], k: int,
+                          num: int, freq: int) -> None:
     if len(heap) < k:
         heapq.heappush(heap, (freq, num))
     else:
@@ -78,7 +79,8 @@ def k_most_frequent_heap(lst: list[int], k: int) -> list[int]:
 
 def k_most_common_counter(lst: list[int], k: int) -> list[int]:
     """
-    Time: O(n + k log(n)) -> https://stackoverflow.com/questions/29240807/python-collections-counter-most-common-complexity
+    Time: O(n + k log(n))
+    https://stackoverflow.com/questions/29240807/python-collections-counter-most-common-complexity
     Memo: O(n+k) counter + return list
     """
     counter = Counter(lst)
