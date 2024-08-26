@@ -1,8 +1,9 @@
 """
-Trapping Rain Water
+42. Trapping Rain Water
 
 Given n non-negative integers representing an elevation map
-where the width of each bar is 1, compute how much water it can trap after raining.
+where the width of each bar is 1,
+compute how much water it can trap after raining.
 
 Constraints:
 
@@ -34,13 +35,13 @@ def trap_first(height):
     height_max = 0
     height_left = [0] * len(height)
     for i in range(1, len(height) - 1):
-        height_max = max(height_max, height[i-1])
+        height_max = max(height_max, height[i - 1])
         height_left[i] = height_max
-    
+
     height_max = 0
     height_right = [0] * len(height)
     for i in reversed(range(1, len(height) - 1)):
-        height_max = max(height_max, height[i+1])
+        height_max = max(height_max, height[i + 1])
         height_right[i] = height_max
 
     volume = 0
@@ -51,13 +52,13 @@ def trap_first(height):
 
 def trap(height):
     """
-        Time: O(n)
-        Memo: O(1)
-        Ideas:
-            - Pointers left and right
-            - Safe max_left and max_right
-            - Can only trap water if height smaller than barrier
-        
+    Time: O(n)
+    Memo: O(1)
+    Ideas:
+        - Pointers left and right
+        - Safe max_left and max_right
+        - Can only trap water if height smaller than barrier
+
     """
     if len(height) < 3:
         return 0
@@ -85,4 +86,3 @@ if __name__ == "__main__":
     for height, exp in tests:
         act = trap(height)
         assert act == exp
-        print(act, exp)
