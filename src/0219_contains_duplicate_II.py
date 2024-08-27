@@ -11,7 +11,7 @@ Constraints:
 -) 0 <= k <= 10^5
 """
 
-from collections import namedtuple, defaultdict
+from collections import namedtuple
 
 Test = namedtuple("Test", ("lst", "k", "exp"))
 

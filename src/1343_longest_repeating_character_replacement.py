@@ -1,8 +1,10 @@
 """
-1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+1343. Number of Sub-arrays of Size K
+      and Average Greater than or Equal to Threshold
 
 Given an array of integers arr and two integers k and threshold,
-return the number of sub-arrays of size k and average greater than or equal to threshold.
+return the number of sub-arrays of size k
+and average greater than or equal to threshold.
 
 Example 1:
 arr = [2,2,2,2,5,5,5,8], k = 3, th = 4 out: 3

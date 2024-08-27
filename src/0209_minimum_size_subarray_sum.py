@@ -25,7 +25,6 @@ try coding another solution of which the time complexity is O(n log(n)).
 """
 
 from collections import namedtuple
-import math
 
 Test = namedtuple("Test", ("nums", "target", "exp"))
 
