@@ -9,7 +9,8 @@ If there is no such substring, return the empty string "".
 The testcases will be generated such that the answer is unique.
 
 Example 1: s = "ADOBECODEBANC", t = "ABC" Output: "BANC"
-Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+Explanation: The minimum window substring "BANC"
+             includes 'A', 'B', and 'C' from string t.
 
 Example 2: s = "a", t = "a" Output: "a"
 Explanation: The entire string s is the minimum window.
@@ -27,6 +28,7 @@ s and t consist of uppercase and lowercase English letters.
 Follow up: Could you find an algorithm that runs in O(m + n) time?
 """
 from collections import namedtuple
+from collections import defaultdict
 
 Test = namedtuple("Test", ("s", "t", "exp"))
 
@@ -39,10 +41,9 @@ tests = (
     Test('x', 'xy', '')
 )
 
-from collections import defaultdict
 
-
-def has_dct_subset_keys_with_values_less_equal(m1: dict[str: int], m2: dict[str: int]) -> bool:
+def has_dct_subset_keys_with_values_less_equal(m1: dict[str: int],
+                                               m2: dict[str: int]) -> bool:
     for k, v in m1.items():
         if k in m2:
             if v > m2[k]:
@@ -54,7 +55,8 @@ def has_dct_subset_keys_with_values_less_equal(m1: dict[str: int], m2: dict[str:
 
 def min_window(s: str, t: str) -> str:
     """
-        Idea: expand window until its valid. Contract as long as it stays valid.
+        Idea: Expand window until its valid.
+              Contract as long as it stays valid.
         Time: O(n)
         Memo: O(1) since the number of characters is limited to 128
     """
@@ -93,9 +95,3 @@ if __name__ == '__main__':
         act = min_window(s, t)
         print(f"s='{s}', t='{t}, exp='{exp}' act='{act}'")
         assert act == exp
-
-    # m1 = {'a': 2, 'b': 1, 'c': 1}
-    # m2 = {'a': 1, 'b': 1, 'c': 2}
-
-    # eq = has_dct_subset_keys_with_values_less_equal(m1, m2)
-    # print(eq)
