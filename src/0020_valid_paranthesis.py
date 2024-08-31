@@ -53,7 +53,6 @@ def is_valid(s: str) -> bool:
         elif not stack or stack.pop() != parmap[c]:
             return False
     return not stack
-            
 
 
 if __name__ == "__main__":

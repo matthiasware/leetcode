@@ -49,6 +49,7 @@ At most 2 * 10^5 calls will be made to get and put.
             - O(1) removal on all idcs becauase of updates!
             -> Linked List
 """
+
 from dataclasses import dataclass
 from typing import TypeVar
 
