@@ -58,7 +58,7 @@ def max_sliding_window_naive(nums: list[int], k: int) -> list[int]:
 
 def max_sliding_window(nums: list[int], k: int) -> list[int]:
     """
-    Idea: 
+    Idea:
         - represent window via deque
         - store indices instead of elements
         - first item in deque always reperesents the current maximum
