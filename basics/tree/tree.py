@@ -59,7 +59,7 @@ _trees = [
         'right':
         {
             'data': 2,
-            'right': 
+            'right':
             {
                 'data': 5
             }

@@ -19,7 +19,7 @@ def quick_sort(lst: list[int], i_start: int = None, i_end: int = None) -> None:
 
     if i_end - i_start < 1:
         return
-    
+
     i_part = partition(lst, i_start, i_end)
     quick_sort(lst, i_start, i_part - 1)
     quick_sort(lst, i_part + 1, i_end)
