@@ -117,6 +117,8 @@ def car_fleet_sort_stack(target: int, positions: list[int], speeds: list[int]) -
         - sort by position, necessary, otherwise there is no way to know the next car.
         - Save fleets in a list
         - For each car check if it will be overtaken by a fleet
+        - It works since we store only increasing heights,
+          we can calculate the area from this element to the current index.
     """
     positions, speeds = zip(*sorted(zip(positions, speeds)))
     fleets = []
