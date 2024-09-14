@@ -36,7 +36,7 @@ tests = (
 )
 
 
-def add_two_numbers_long(h1: Node, h2: Node) -> Node:
+def add_two_numbers_1(h1: Node, h2: Node) -> Node:
     dummy = Node(0)
     cur = dummy
     carry_flag = 0
@@ -61,7 +61,7 @@ def add_two_numbers_long(h1: Node, h2: Node) -> Node:
     return dummy.next
 
 
-def add_two_numbers(h1: Node, h2: Node) -> Node:
+def add_two_numbers_2(h1: Node, h2: Node) -> Node:
     dummy = Node(0)
     cur = dummy
     carry_flag = 0
@@ -78,6 +78,26 @@ def add_two_numbers(h1: Node, h2: Node) -> Node:
         cur = cur.next
     if carry_flag:
         cur.next = Node(carry_flag)
+    return dummy.next
+
+
+def add_two_numbers(h1: Node, h2: Node) -> Node:
+    dummy = Node(0)
+    cur = dummy
+    carry = 0
+    while h1 or h2 or carry:
+        list_sum = carry
+        v1 = h1.val if h1 else 0
+        v2 = h2.val if h2 else 0
+
+        list_sum = v1 + v2 + carry
+
+        carry, val = divmod(list_sum, 10)
+        cur.next = Node(val)
+
+        h1 = h1.next if h1 else None
+        h2 = h2.next if h2 else None
+        cur = cur.next
     return dummy.next
 
 
