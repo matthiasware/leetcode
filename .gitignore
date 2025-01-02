@@ -9,3 +9,6 @@
 !.flake8
 !*.py
 
+!*.go
+
+.idea
