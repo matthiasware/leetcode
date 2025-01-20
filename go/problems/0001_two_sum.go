@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
 	"slices"
-	"testing"
 )
 
 func twoSum_naive(nums []int, target int) []int {
@@ -42,13 +40,6 @@ func twoSum(nums []int, target int) []int {
 		valToIdx[n] = i
 	}
 	return nil
-}
-
-func TestSlicesEqual(t *testing.T) {
-	slice1 := []int{1, 2, 3}
-	slice2 := []int{1, 2, 3}
-
-	assert.Equal(t, slice1, slice2, "The slices should be equal")
 }
 
 func main() {
