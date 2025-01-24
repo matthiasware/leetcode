@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	stack := tools.New[int]()
+	stack := tools.NewStack[int]()
 	stack.Push(1)
 	fmt.Println(stack)
 }

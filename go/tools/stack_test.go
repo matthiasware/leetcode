@@ -5,7 +5,7 @@ import (
 )
 
 func TestPushInt(t *testing.T) {
-	stack := New[int]()
+	stack := NewStack[int]()
 	item := 1251
 	stack.Push(item)
 	if len(stack.Data) != 1 {
@@ -17,7 +17,7 @@ func TestPushInt(t *testing.T) {
 }
 
 func TestPushString(t *testing.T) {
-	stack := New[string]()
+	stack := NewStack[string]()
 	i1 := "A"
 	stack.Push(i1)
 	i2 := "B"
@@ -35,26 +35,26 @@ func TestPushString(t *testing.T) {
 }
 
 func TestLen(t *testing.T) {
-	stack := New[int]()
+	stack := NewStack[int]()
 	for range 10 {
 		stack.Push(1)
 	}
 	if stack.Len() != 10 {
 		t.Errorf("stack.Len does not contain 10 elements")
 	}
-	stack = New[int]()
+	stack = NewStack[int]()
 	stack.Push(1)
 	if stack.Len() != 1 {
 		t.Errorf("stack.Len does not contain 1 element")
 	}
-	stack = New[int]()
+	stack = NewStack[int]()
 	if stack.Len() != 0 {
 		t.Errorf("stack.Len does not contain 0 element")
 	}
 }
 
 func TestPeek(t *testing.T) {
-	stack := New[int]()
+	stack := NewStack[int]()
 	exp := 13
 	stack.Push(exp)
 	act := stack.Peek()
@@ -72,7 +72,7 @@ func TestPeek(t *testing.T) {
 }
 
 func TestPop(t *testing.T) {
-	stack := New[int]()
+	stack := NewStack[int]()
 	stack.Push(1)
 	item := stack.Pop()
 	if item != 1 {

@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"leetcode/tools"
+)
+
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -21,10 +26,29 @@ func inorderTraversalRec(node *TreeNode, result *[]int) {
 	inorderTraversalRec(node.Right, result)
 }
 
+func inorderTraversalIterative(root *TreeNode) []int {
+	result := []int{}
+	stack := tools.NewStack[*TreeNode]()
+	node := root
+
+	for node != nil || !stack.Empty() {
+		for node != nil {
+			stack.Push(node)
+			node = node.Left
+		}
+		node = stack.Pop()
+		result = append(result, node.Val)
+		node = node.Right
+	}
+
+	return result
+}
+
 func main() {
 	root := TreeNode{1,
 		&TreeNode{2, nil, nil},
 		&TreeNode{3, nil, nil},
 	}
-	inorderTraversal(&root)
+	res := inorderTraversalIterative(&root)
+	fmt.Println(res)
 }
