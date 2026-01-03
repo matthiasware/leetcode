@@ -15,7 +15,40 @@ func containsDuplicate(nums []int) bool {
 	return false
 }
 
+type Set struct {
+	items map[int]struct{}
+}
+
+func NewSet() *Set {
+	return &Set{items: make(map[int]struct{}),}
+}
+
+func (set *Set) Add(item int){
+	set.items[item] = struct{}{}
+}
+
+func (set *Set) Contains(item int) bool{
+	_, ok := set.items[item]
+	return ok
+}
+
+func (set *Set) Length() int {
+	return len(set.items)
+}
+
+func constainsDuplicate_hash(nums []int) bool{
+	s := NewSet()
+	for _, n := range nums {
+		if s.Contains(n){
+			return true
+		}
+		s.Add(n)
+		fmt.Println(s)
+	}
+	return false
+}
+
 
 func main() {
-	fmt.Println(containsDuplicate([]int{0,0}))
+	fmt.Println(constainsDuplicate_hash([]int{0,1,2}))
 }
