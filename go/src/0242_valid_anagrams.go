@@ -24,6 +24,24 @@ func isAnagram(s string, t string) bool{
 	return true
 }
 
+func isAnagramOpt(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	freq := [26]int{}
+	for i := range len(s){
+		freq[s[i]- 'a']++
+	}
+	for i := range len(t){
+		freq[t[i] - 'a']--
+		if freq[t[i] - 'a'] < 0 {
+			return false
+		}
+	}
+	return true
+}
+
+
 func isAnagramMap(s string, t string) bool{
 	if len(s) != len(t) {
 		return false
