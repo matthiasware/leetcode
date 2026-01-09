@@ -13,3 +13,5 @@
 !*.mod
 
 .idea
+
+tmp.go

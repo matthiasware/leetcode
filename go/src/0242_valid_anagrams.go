@@ -25,6 +25,9 @@ func isAnagram(s string, t string) bool{
 }
 
 func isAnagramOpt(s string, t string) bool {
+	//  abcea -> 2,1,1,0,1 
+	// Time O(n+m)
+	// Memory: O(1) 		
 	if len(s) != len(t) {
 		return false
 	}
@@ -88,7 +91,7 @@ func main(){
 		{"abcd", "abcf", false},
 	}
 	for _, test := range tests {
-		act := isAnagram(test.s, test.t)
+		act := isAnagramRepeat(test.s, test.t)
 		fmt.Println(test.s, test.t, test.exp, act)
 		if act != test.exp {
 			panic(fmt.Sprintf("act != exp : %t != %t for s=%s, t=%s", act, test.exp, test.s, test.t))
