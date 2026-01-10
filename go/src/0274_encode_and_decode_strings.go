@@ -18,11 +18,13 @@ this solution could possibly be improved by using fixed 4 byte header
 
 type Solution struct{}
 
+const Delimiter = ':'
+
 func (s *Solution) Encode(strs []string) string {
 	var sb strings.Builder
 	for _, str := range strs {
 		sb.WriteString(strconv.Itoa(len(str)))
-		sb.WriteString(":")
+		sb.WriteRune(Delimiter)
 		sb.WriteString(str)
 	}
 	return sb.String()
@@ -33,7 +35,7 @@ func (s *Solution) Decode(encoded string) []string {
 	for i:=0; i<len(encoded);{
 		j := i
 		for {
-			if encoded[j] == ':' {
+			if encoded[j] == Delimiter {
 				break
 			}
 			j++
