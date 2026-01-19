@@ -1,13 +1,13 @@
-package main	
+package main
 
 import (
 	"fmt"
-	"slices"
 	"maps"
+	"slices"
 	// "reflect"
 )
 
-func isAnagram(s string, t string) bool{
+func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -25,27 +25,26 @@ func isAnagram(s string, t string) bool{
 }
 
 func isAnagramOpt(s string, t string) bool {
-	//  abcea -> 2,1,1,0,1 
+	//  abcea -> 2,1,1,0,1
 	// Time O(n+m)
-	// Memory: O(1) 		
+	// Memory: O(1)
 	if len(s) != len(t) {
 		return false
 	}
 	freq := [26]int{}
-	for i := range len(s){
-		freq[s[i]- 'a']++
+	for i := range len(s) {
+		freq[s[i]-'a']++
 	}
-	for i := range len(t){
-		freq[t[i] - 'a']--
-		if freq[t[i] - 'a'] < 0 {
+	for i := range len(t) {
+		freq[t[i]-'a']--
+		if freq[t[i]-'a'] < 0 {
 			return false
 		}
 	}
 	return true
 }
 
-
-func isAnagramMap(s string, t string) bool{
+func isAnagramMap(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -66,7 +65,7 @@ func isAnagramSort(s string, t string) bool {
 	// if only ASCII we can also convert to bytes
 	// Expensive:
 	// auxiliary space O(n + m)
-	// runtime O(nlogn + nlogm) 	
+	// runtime O(nlogn + nlogm)
 	sr := []rune(s)
 	slices.Sort(sr)
 	tr := []rune(t)
@@ -75,15 +74,13 @@ func isAnagramSort(s string, t string) bool {
 }
 
 type Test struct {
-	s string
-	t string
+	s   string
+	t   string
 	exp bool
 }
 
-
-
-func main(){
-	tests := []Test {
+func main() {
+	tests := []Test{
 		{"a", "a", true},
 		{"a", "aa", false},
 		{"abc", "abc", true},
@@ -97,5 +94,5 @@ func main(){
 			panic(fmt.Sprintf("act != exp : %t != %t for s=%s, t=%s", act, test.exp, test.s, test.t))
 		}
 	}
-	
+
 }

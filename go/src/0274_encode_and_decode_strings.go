@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 /*
@@ -32,17 +32,17 @@ func (s *Solution) Encode(strs []string) string {
 
 func (s *Solution) Decode(encoded string) []string {
 	result := []string{}
-	for i:=0; i<len(encoded);{
+	for i := 0; i < len(encoded); {
 		j := i
 		for {
 			if encoded[j] == Delimiter {
 				break
 			}
 			j++
-		} 
+		}
 		subLenBytes := encoded[i:j]
-		strLenBytes, _ := strconv.Atoi(subLenBytes) 
-		
+		strLenBytes, _ := strconv.Atoi(subLenBytes)
+
 		begin := j + 1
 		end := begin + strLenBytes
 		str := encoded[begin:end]
@@ -52,10 +52,10 @@ func (s *Solution) Decode(encoded string) []string {
 	return result
 }
 
-func main(){
+func main() {
 	// strs := []string{""}
 	// strs := []string{"a"}
-	// strs := []string{"aa"} 	
+	// strs := []string{"aa"}
 	strs := []string{"a", "bc", "d"}
 	// strs := []string{"we","say",":","yes","!@#$%^&*()"}
 	s := Solution{}

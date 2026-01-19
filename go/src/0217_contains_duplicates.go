@@ -20,14 +20,14 @@ type Set struct {
 }
 
 func NewSet() *Set {
-	return &Set{items: make(map[int]struct{}),}
+	return &Set{items: make(map[int]struct{})}
 }
 
-func (set *Set) Add(item int){
+func (set *Set) Add(item int) {
 	set.items[item] = struct{}{}
 }
 
-func (set *Set) Contains(item int) bool{
+func (set *Set) Contains(item int) bool {
 	_, ok := set.items[item]
 	return ok
 }
@@ -36,10 +36,10 @@ func (set *Set) Length() int {
 	return len(set.items)
 }
 
-func constainsDuplicate_hash(nums []int) bool{
+func constainsDuplicate_hash(nums []int) bool {
 	s := NewSet()
 	for _, n := range nums {
-		if s.Contains(n){
+		if s.Contains(n) {
 			return true
 		}
 		s.Add(n)
@@ -48,7 +48,6 @@ func constainsDuplicate_hash(nums []int) bool{
 	return false
 }
 
-
 func main() {
-	fmt.Println(constainsDuplicate_hash([]int{0,1,2}))
+	fmt.Println(constainsDuplicate_hash([]int{0, 1, 2}))
 }

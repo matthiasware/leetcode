@@ -42,17 +42,17 @@ func twoSum(numbers []int, target int) []int {
 			left++
 		} else if sum > target {
 			right--
-		} else{
+		} else {
 			break
 		}
 	}
-	return []int{left+1, right+1}
+	return []int{left + 1, right + 1}
 }
 
 func main() {
 	// numbers := []int{2,7,11,15}
 	// target := 9
-	numbers := []int{1,2,3,4}
+	numbers := []int{1, 2, 3, 4}
 	target := 3
 	fmt.Println(twoSum(numbers, target))
 }

@@ -26,12 +26,12 @@ import (
 )
 
 func checkAndMark(nums *[9]bool, val byte) bool {
-	if val == '.'{
+	if val == '.' {
 		return true
 	}
 	// actually we would convert via intVal := int(val - '0')
 	// however we would than need to lookup via nums[intVal - 1]
-	// so we try to be more efficient here 	
+	// so we try to be more efficient here
 	intVal := int(val - '1')
 	if nums[intVal] {
 		return false
@@ -42,50 +42,50 @@ func checkAndMark(nums *[9]bool, val byte) bool {
 
 func isValidSudoku(board [][]byte) bool {
 	// row wise
-	for r:=0; r<9;r++ {
+	for r := 0; r < 9; r++ {
 		nums := [9]bool{}
-		for c:=0;c<9;c++{
-			if !checkAndMark(&nums, board[r][c]){
+		for c := 0; c < 9; c++ {
+			if !checkAndMark(&nums, board[r][c]) {
 				return false
 			}
 		}
 	}
 	// col wise
-	for c:=0; c<9;c++ {
+	for c := 0; c < 9; c++ {
 		nums := [9]bool{}
-		for r:=0;r<9;r++{
-			if !checkAndMark(&nums, board[r][c]){
+		for r := 0; r < 9; r++ {
+			if !checkAndMark(&nums, board[r][c]) {
 				return false
 			}
 		}
 	}
 	// cell wise
-	for r := 0; r<3; r++{
-		for c :=0; c<3; c++ {
+	for r := 0; r < 3; r++ {
+		for c := 0; c < 3; c++ {
 			nums := [9]bool{}
-			for i := r * 3; i < r*3 + 3; i++{
-				for j := c * 3; j<c*3+3; j++ {
-					if !checkAndMark(&nums, board[i][j]){
+			for i := r * 3; i < r*3+3; i++ {
+				for j := c * 3; j < c*3+3; j++ {
+					if !checkAndMark(&nums, board[i][j]) {
 						return false
 					}
 				}
 			}
 		}
 	}
-	return true	 	
+	return true
 }
 
-func main(){
- 	board := [][]byte{
-    	{'1', '2', '.', '.', '3', '.', '.', '.', '.'},
-    	{'4', '.', '.', '5', '.', '.', '.', '.', '.'},
-    	{'.', '9', '8', '.', '.', '.', '.', '.', '3'},
-    	{'5', '.', '.', '.', '6', '.', '.', '.', '4'},
-    	{'.', '.', '.', '8', '.', '3', '.', '.', '5'},
-    	{'7', '.', '.', '.', '2', '.', '.', '.', '6'},
-    	{'.', '.', '.', '.', '.', '.', '2', '.', '.'},
-    	{'.', '.', '.', '4', '1', '9', '.', '.', '8'},
-    	{'.', '.', '.', '.', '8', '.', '.', '7', '9'},
+func main() {
+	board := [][]byte{
+		{'1', '2', '.', '.', '3', '.', '.', '.', '.'},
+		{'4', '.', '.', '5', '.', '.', '.', '.', '.'},
+		{'.', '9', '8', '.', '.', '.', '.', '.', '3'},
+		{'5', '.', '.', '.', '6', '.', '.', '.', '4'},
+		{'.', '.', '.', '8', '.', '3', '.', '.', '5'},
+		{'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+		{'.', '.', '.', '.', '.', '.', '2', '.', '.'},
+		{'.', '.', '.', '4', '1', '9', '.', '.', '8'},
+		{'.', '.', '.', '.', '8', '.', '.', '7', '9'},
 	}
 	res := isValidSudoku(board)
 	fmt.Println(res)

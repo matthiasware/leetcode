@@ -44,15 +44,15 @@ import (
 
 func threeSum(nums []int) [][]int {
 	/*
-	Time O(n^3)
-	Space O(m) where m is the number of triplets
+		Time O(n^3)
+		Space O(m) where m is the number of triplets
 	*/
 	resMap := map[[3]int]struct{}{}
 	sort.Ints(nums)
-	for i:=0; i<len(nums) - 2; i++ {
-		for j:=i+1; j < len(nums) - 1; j++{
-			for k:=j; k < len(nums); k++ {
-				if nums[i] + nums[j] + nums[k] == 0 {
+	for i := 0; i < len(nums)-2; i++ {
+		for j := i + 1; j < len(nums)-1; j++ {
+			for k := j; k < len(nums); k++ {
+				if nums[i]+nums[j]+nums[k] == 0 {
 					resMap[[3]int{nums[i], nums[j], nums[k]}] = struct{}{}
 				}
 			}
@@ -65,10 +65,7 @@ func threeSum(nums []int) [][]int {
 	return res
 }
 
-
-
-
-func main(){
-	nums := []int{-1,0,1,2,-1,-4}
+func main() {
+	nums := []int{-1, 0, 1, 2, -1, -4}
 	fmt.Println(threeSum(nums))
 }

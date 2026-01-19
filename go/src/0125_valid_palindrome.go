@@ -19,7 +19,7 @@ Input: s = " "
 Output: true
 Explanation: s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
- 
+
 
 Constraints:
 
@@ -34,20 +34,20 @@ import (
 	"unicode"
 )
 
-func isAlphaNum(c rune) bool{
+func isAlphaNum(c rune) bool {
 	return unicode.IsLetter(c) || unicode.IsDigit(c)
 }
 
-func isPalindrome(s string) bool{
-	p1, p2 := 0, len(s) - 1
+func isPalindrome(s string) bool {
+	p1, p2 := 0, len(s)-1
 	for p1 < p2 {
-		for p1 < p2 && !isAlphaNum(rune(s[p1])){
+		for p1 < p2 && !isAlphaNum(rune(s[p1])) {
 			p1++
 		}
-		for p2 > p1 && !isAlphaNum(rune(s[p2])){
+		for p2 > p1 && !isAlphaNum(rune(s[p2])) {
 			p2--
 		}
-		if unicode.ToLower(rune(s[p1])) != unicode.ToLower(rune(s[p2])){
+		if unicode.ToLower(rune(s[p1])) != unicode.ToLower(rune(s[p2])) {
 			return false
 		}
 		p1++
@@ -56,7 +56,7 @@ func isPalindrome(s string) bool{
 	return true
 }
 
-func main(){
+func main() {
 	fmt.Println(isPalindrome("a b a"))
 	// fmt.Println(isAlphaNum('!'))
 }

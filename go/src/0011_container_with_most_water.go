@@ -33,7 +33,7 @@ package main
 import "fmt"
 
 func maxArea(heights []int) int {
-	l,r := 0, len(heights) - 1
+	l, r := 0, len(heights)-1
 	var res int
 	for l < r {
 		hl := heights[l]
@@ -49,8 +49,8 @@ func maxArea(heights []int) int {
 	return res
 }
 
-func main(){
+func main() {
 	// heights := []int{1,8,6,2,5,4,8,3,7}
-	heights := []int{1,2,2,4}
+	heights := []int{1, 2, 2, 4}
 	fmt.Println(maxArea(heights))
 }

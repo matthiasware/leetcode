@@ -19,33 +19,32 @@ You should aim for a solution with O(n) time and O(n) space, where n is the size
 
 package main
 
-
 import (
 	"fmt"
 	"slices"
 )
 
-func topKFrequentNaive(nums []int, k int ) []int {
+func topKFrequentNaive(nums []int, k int) []int {
 	// n ... len(nums)
 	// Time: O(n log n)
 	// Space: O(n)
 
-	// calculate frequencies 	
+	// calculate frequencies
 	freqs := map[int]int{}
-	
+
 	for _, n := range nums {
 		freqs[n]++
 	}
-	// sort keys 	
+	// sort keys
 	keys := make([]int, 0, len(freqs))
 	for k := range freqs {
 		keys = append(keys, k)
 	}
-	
+
 	slices.SortFunc(keys, func(a, b int) int {
 		return freqs[b] - freqs[a]
 	})
-	// return tok k 	
+	// return tok k
 	return keys[:k]
 }
 
@@ -56,14 +55,14 @@ func topKFrequent(nums []int, k int) []int {
 		counts[n]++
 	}
 	// bucketize counts
-	buckets := make([][]int, len(nums) + 1)
+	buckets := make([][]int, len(nums)+1)
 	for k, v := range counts {
 		buckets[v] = append(buckets[v], k)
 	}
-	// // go through buckets until we got k elements	
+	// // go through buckets until we got k elements
 	result := make([]int, 0, k)
 	for i := len(buckets) - 1; i >= 0; i-- {
-		for _, num := range buckets[i]{
+		for _, num := range buckets[i] {
 			result = append(result, num)
 			if len(result) == k {
 				return result
@@ -73,9 +72,8 @@ func topKFrequent(nums []int, k int) []int {
 	return result
 }
 
-
 func main() {
-	nums := []int{1,2,1,2,1,2,3,1,3,2}
+	nums := []int{1, 2, 1, 2, 1, 2, 3, 1, 3, 2}
 	k := 2
 	fmt.Println(topKFrequent(nums, k))
 }
