@@ -64,6 +64,8 @@ type CarData struct {
 	position []int
 	speed []int
 }
+
+// value receiver might be faster as it won't end up at the heap
 func (c CarData) Len() int {return len(c.position)}
 func (c CarData) Less(i, j int) bool {return c.position[i] > c.position[j]}
 func (c CarData) Swap(i, j int) {
