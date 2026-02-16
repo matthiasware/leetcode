@@ -10,18 +10,18 @@ import (
 	"testing"
 )
 
-type DataGenerator struct{
+type DataGenerator struct {
 	rng *rand.Rand
 }
 
 func NewDataGenerator(seed int64) *DataGenerator {
-	return &DataGenerator{rng:rand.New(rand.NewSource(seed))}
+	return &DataGenerator{rng: rand.New(rand.NewSource(seed))}
 }
 
 func (dg *DataGenerator) Generate(rows, cols int) [][]int {
-	data := make([]int, rows * cols)
+	data := make([]int, rows*cols)
 	counter := 0
-	for i:=0; i < len(data); {
+	for i := 0; i < len(data); {
 		if dg.rng.Intn(3) == 1 {
 			data[i] = counter
 			i++
@@ -38,20 +38,19 @@ func (dg *DataGenerator) Generate(rows, cols int) [][]int {
 }
 
 func (dg *DataGenerator) GenerateTarget(minTarget, maxTarget int) int {
-	return minTarget + dg.rng.Intn(maxTarget - minTarget)
+	return minTarget + dg.rng.Intn(maxTarget-minTarget)
 }
 
-
-func searchMatrix(matrix [][]int, target int) bool {	
-	l, r := 0, len(matrix) - 1
+func searchMatrix(matrix [][]int, target int) bool {
+	l, r := 0, len(matrix)-1
 	for l <= r {
-		m := l + (r - l) / 2
- 		innerArray := matrix[m]
- 		if target >= innerArray[0] && target <= innerArray[len(innerArray) - 1] {
+		m := l + (r-l)/2
+		innerArray := matrix[m]
+		if target >= innerArray[0] && target <= innerArray[len(innerArray)-1] {
 			// search inner array
-			l, r = 0, len(innerArray) - 1
+			l, r = 0, len(innerArray)-1
 			for l <= r {
-				m := l + (r - l) / 2
+				m := l + (r-l)/2
 				if target == innerArray[m] {
 					return true
 				} else if target < innerArray[m] {
@@ -59,13 +58,13 @@ func searchMatrix(matrix [][]int, target int) bool {
 				} else {
 					l = m + 1
 				}
-			}			
+			}
 			return false
- 		} else if target < innerArray[0] {
- 			r = m - 1
- 		} else {
- 			l = m + 1
- 		}
+		} else if target < innerArray[0] {
+			r = m - 1
+		} else {
+			l = m + 1
+		}
 	}
 	return false
 }
@@ -77,13 +76,13 @@ func BenchmarkSearch(b *testing.B) {
 	for _, size := range sizes {
 		gen := NewDataGenerator(42)
 		data := gen.Generate(size, size)
-		
+
 		dataMin := data[0][0]
 		lastRow := data[len(data)-1]
 		dataMax := lastRow[len(lastRow)-1]
 
 		// pre-generate targets to avoid branch predictor bias
-		targets := make([]int, 1000) 
+		targets := make([]int, 1000)
 		for i := 0; i < 1000; i++ {
 			targets[i] = gen.GenerateTarget(dataMin, dataMax)
 		}

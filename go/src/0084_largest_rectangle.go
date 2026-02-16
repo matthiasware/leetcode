@@ -26,7 +26,7 @@ func largestRectangleArea(heights []int) int {
 	maxArea := 0
 	// 1. Add a 0 to the end to force all remaining bars off the stack at the end
 	heights = append(heights, 0)
-	
+
 	// 2. Start with -1 on the stack to act as a universal left boundary
 	stack := []int{-1}
 
@@ -35,13 +35,13 @@ func largestRectangleArea(heights []int) int {
 		for len(stack) > 1 && h < heights[stack[len(stack)-1]] {
 			topIdx := stack[len(stack)-1]
 			stack = stack[:len(stack)-1]
-			
+
 			// Height of the bar we just popped
 			height := heights[topIdx]
-			
+
 			// Width is (current index) - (new stack top) - 1
 			width := i - stack[len(stack)-1] - 1
-			
+
 			if area := height * width; area > maxArea {
 				maxArea = area
 			}
@@ -51,7 +51,8 @@ func largestRectangleArea(heights []int) int {
 	}
 
 	return maxArea
-} 
+}
+
 type Test struct {
 	heights []int
 	area    int

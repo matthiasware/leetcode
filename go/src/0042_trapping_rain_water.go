@@ -27,18 +27,18 @@ import (
 func trap_prefix_suffix(height []int) int {
 	prefix_max := make([]int, len(height))
 	suffix_max := make([]int, len(height))
-	
-	for i:=1;i<len(height);i++{
+
+	for i := 1; i < len(height); i++ {
 		prefix_max[i] = max(prefix_max[i-1], height[i-1])
 	}
-	for i:=len(height)-2;i>=0;i--{
+	for i := len(height) - 2; i >= 0; i-- {
 		suffix_max[i] = max(suffix_max[i+1], height[i+1])
 	}
 	res := 0
-	for i:=0;i<len(height);i++{
-		res += max(min(prefix_max[i], suffix_max[i]) - height[i],0)
+	for i := 0; i < len(height); i++ {
+		res += max(min(prefix_max[i], suffix_max[i])-height[i], 0)
 	}
-	
+
 	return res
 }
 
@@ -46,12 +46,12 @@ func trap(height []int) int {
 	if len(height) < 2 {
 		return 0
 	}
-	left, right := 0, len(height) - 1
+	left, right := 0, len(height)-1
 	leftMax, rightMax := height[left], height[right]
 	res := 0
-	
+
 	for left < right {
-		if leftMax < rightMax{
+		if leftMax < rightMax {
 			left++
 			leftMax = max(leftMax, height[left])
 			res += leftMax - height[left]
@@ -62,15 +62,13 @@ func trap(height []int) int {
 		}
 	}
 	return res
-	
+
 	return 0
 }
 
-
-
-func main(){
-	height := []int{4,2,0,3,2,5}
-	height = []int{0,1,0,2,1,0,1,3,2,1,2,1}
+func main() {
+	height := []int{4, 2, 0, 3, 2, 5}
+	height = []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}
 	res := trap(height)
 	fmt.Println(res)
 }

@@ -9,7 +9,7 @@ Given the array nums after the possible rotation and an integer target, return t
 
 You must write an algorithm with O(log n) runtime complexity.
 
- 
+
 Example 1:
 Input: nums = [4,5,6,7,0,1,2], target = 0
 Output: 4
@@ -21,7 +21,7 @@ Output: -1
 Example 3:
 Input: nums = [1], target = 0
 Output: -1
- 
+
 
 Constraints:
 1 <= nums.length <= 5000
@@ -40,62 +40,61 @@ func search(nums []int, target int) int {
 	//   l
 	//      r
 	//   m
- 	// Part 1) Find Pivot element
- 	//         Pivot is the index of the smallest element
- 	l, r := 0, len(nums) - 1
- 	for l < r {
- 		m := (l + r) / 2
- 		if nums[m] > nums[r] {
- 			l = m + 1
- 		} else {
- 			r = m
- 		}
- 	}
- 	// Part 2) Chose subarray
- 	pivot := l
- 	l, r = 0, len(nums) - 1
- 	if target >= nums[pivot] && target <= nums[r] {
- 		l = pivot
- 	} else {
- 		r = pivot - 1
- 	}
- 	// Part 3) Find target in subarray
- 	for l < r {
- 		m := (l + r) / 2
- 		if nums[m] < target {
- 			l = m + 1
- 		} else {
- 			r = m
- 		}
- 	}
- 	if nums[l] == target {
- 		return l
- 	}
+	// Part 1) Find Pivot element
+	//         Pivot is the index of the smallest element
+	l, r := 0, len(nums)-1
+	for l < r {
+		m := (l + r) / 2
+		if nums[m] > nums[r] {
+			l = m + 1
+		} else {
+			r = m
+		}
+	}
+	// Part 2) Chose subarray
+	pivot := l
+	l, r = 0, len(nums)-1
+	if target >= nums[pivot] && target <= nums[r] {
+		l = pivot
+	} else {
+		r = pivot - 1
+	}
+	// Part 3) Find target in subarray
+	for l < r {
+		m := (l + r) / 2
+		if nums[m] < target {
+			l = m + 1
+		} else {
+			r = m
+		}
+	}
+	if nums[l] == target {
+		return l
+	}
 	return -1
 }
 
 type Test struct {
-	nums []int
+	nums   []int
 	target int
 	result int
 }
 
-
-func main(){
-	tests := []Test {
+func main() {
+	tests := []Test{
 		{[]int{0}, 0, 0},
 		{[]int{0}, 1, -1},
 		{[]int{0, 1}, 1, 1},
 		{[]int{1, 0}, 1, 0},
-		{[]int{0,1,3,4}, 1, 1},
-		{[]int{0,1,3,4}, -1, -1},
-		{[]int{0,1,3,4}, 5, -1},
-		{[]int{6,8,0,2,4}, 6, 0},
-		{[]int{6,8,0,2,4}, 2, 3},
-		{[]int{6,8,0,2,4}, 5, -1},
-		{[]int{6,8,0,2,4}, 3, -1},
-		{[]int{4,5,6,7,0,1,2}, 0, 4},
-		{[]int{4,5,6,7,0,1,2}, 3, -1},
+		{[]int{0, 1, 3, 4}, 1, 1},
+		{[]int{0, 1, 3, 4}, -1, -1},
+		{[]int{0, 1, 3, 4}, 5, -1},
+		{[]int{6, 8, 0, 2, 4}, 6, 0},
+		{[]int{6, 8, 0, 2, 4}, 2, 3},
+		{[]int{6, 8, 0, 2, 4}, 5, -1},
+		{[]int{6, 8, 0, 2, 4}, 3, -1},
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 0, 4},
+		{[]int{4, 5, 6, 7, 0, 1, 2}, 3, -1},
 	}
 	for _, test := range tests {
 		act := search(test.nums, test.target)

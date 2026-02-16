@@ -30,13 +30,13 @@ import "fmt"
 func search(nums []int, target int) int {
 	// 0,1,2,3,4 target = 1
 	// l   m   r
-	// 	
+	//
 	// l r	m=l
 	//   r  r=l=m
 	l := 0
 	r := len(nums) - 1
 	for l <= r {
-		m := l + (r - l) / 2
+		m := l + (r-l)/2
 		if nums[m] == target {
 			return m
 		} else if nums[m] < target {
@@ -48,10 +48,9 @@ func search(nums []int, target int) int {
 	return -1
 }
 
-
-func main(){
+func main() {
 	// nums := []int{-1,0,3,5,9,12}
-	nums := []int{0,1,2,3,4}
+	nums := []int{0, 1, 2, 3, 4}
 	target := 1
 	fmt.Println(search(nums, target))
 }

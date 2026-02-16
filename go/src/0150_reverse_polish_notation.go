@@ -1,4 +1,4 @@
-/Users/matthias.mitterreiter/projects/leetcode/go/src/0150_reverse_polish_notation.go/*
+/*
 Evaluate Reverse Polish Notation
 You are given an array of strings tokens that represents a valid arithmetic expression in Reverse Polish Notation.
 
@@ -32,17 +32,16 @@ import (
 
 type Stack []int
 
-func (s *Stack) Push(i int){
+func (s *Stack) Push(i int) {
 	*s = append(*s, i)
 }
 
-func (s *Stack) Pop() int{
+func (s *Stack) Pop() int {
 	idx := len(*s) - 1
 	item := (*s)[idx]
 	*s = (*s)[:idx]
 	return item
 }
-
 
 func evalRPN(tokens []string) int {
 	stack := Stack{}
@@ -52,7 +51,7 @@ func evalRPN(tokens []string) int {
 			op1 := stack.Pop()
 			res := op1 + op2
 			stack.Push(res)
-		} else if token == "-"{
+		} else if token == "-" {
 			op2 := stack.Pop()
 			op1 := stack.Pop()
 			res := op1 - op2
@@ -77,11 +76,11 @@ func evalRPN(tokens []string) int {
 }
 
 func evalRPNFunc(tokens []string) int {
-	ops := map[string]func(int, int) int {
-		"+": func(a int, b int) int {return a + b},
-		"-": func(a int, b int) int {return a - b},
-		"*": func(a int, b int) int {return a * b},
-		"/": func(a int, b int) int {return a / b},
+	ops := map[string]func(int, int) int{
+		"+": func(a int, b int) int { return a + b },
+		"-": func(a int, b int) int { return a - b },
+		"*": func(a int, b int) int { return a * b },
+		"/": func(a int, b int) int { return a / b },
 	}
 	stack := Stack{}
 	for _, token := range tokens {
@@ -105,14 +104,14 @@ type Test struct {
 	result int
 }
 
-func main(){
+func main() {
 	tests := []Test{
-		{[]string{"1",}, 1},
-		{[]string{"1","2","+"}, 3},
-		{[]string{"1","2","+","3","*","4","-"}, 5},
-		{[]string{"2","1","+","3","*"}, 9},
-		{[]string{"4","13","5","/","+"}, 6},
-		{[]string{"10","6","9","3","+","-11","*","/","*","17","+","5","+"}, 22},
+		{[]string{"1"}, 1},
+		{[]string{"1", "2", "+"}, 3},
+		{[]string{"1", "2", "+", "3", "*", "4", "-"}, 5},
+		{[]string{"2", "1", "+", "3", "*"}, 9},
+		{[]string{"4", "13", "5", "/", "+"}, 6},
+		{[]string{"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"}, 22},
 	}
 	for _, test := range tests {
 		act := evalRPNFunc(test.tokens)

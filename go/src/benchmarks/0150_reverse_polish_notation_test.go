@@ -11,11 +11,11 @@ import (
 
 type Stack []int
 
-func (s *Stack) Push(i int){
+func (s *Stack) Push(i int) {
 	*s = append(*s, i)
 }
 
-func (s *Stack) Pop() int{
+func (s *Stack) Pop() int {
 	idx := len(*s) - 1
 	item := (*s)[idx]
 	*s = (*s)[:idx]
@@ -24,19 +24,18 @@ func (s *Stack) Pop() int{
 
 type FastStack struct {
 	data []int
-	top int
+	top  int
 }
 
 func (s *FastStack) Push(i int) {
-    s.data[s.top] = i
-    s.top++
+	s.data[s.top] = i
+	s.top++
 }
 
 func (s *FastStack) Pop() int {
-    s.top--
-    return s.data[s.top]
+	s.top--
+	return s.data[s.top]
 }
-
 
 func evalRPN(tokens []string) int {
 	stack := Stack{}
@@ -46,7 +45,7 @@ func evalRPN(tokens []string) int {
 			op1 := stack.Pop()
 			res := op1 + op2
 			stack.Push(res)
-		} else if token == "-"{
+		} else if token == "-" {
 			op2 := stack.Pop()
 			op1 := stack.Pop()
 			res := op1 - op2
@@ -71,43 +70,43 @@ func evalRPN(tokens []string) int {
 }
 
 func evalRPNFast(tokens []string) int {
-    stack := FastStack{
-        data: make([]int, len(tokens)), 
-        top:  0,
-    }
+	stack := FastStack{
+		data: make([]int, len(tokens)),
+		top:  0,
+	}
 
-    for _, token := range tokens {
-        switch token {
-        case "+":
-            op2 := stack.Pop()
-            op1 := stack.Pop()
-            stack.Push(op1 + op2)
-        case "-":
-            op2 := stack.Pop()
-            op1 := stack.Pop()
-            stack.Push(op1 - op2)
-        case "*":
-            op2 := stack.Pop()
-            op1 := stack.Pop()
-            stack.Push(op1 * op2)
-        case "/":
-            op2 := stack.Pop()
-            op1 := stack.Pop()
-            stack.Push(op1 / op2)
-        default:
-            num, _ := strconv.Atoi(token)
-            stack.Push(num)
-        }
-    }
-    return stack.Pop()
+	for _, token := range tokens {
+		switch token {
+		case "+":
+			op2 := stack.Pop()
+			op1 := stack.Pop()
+			stack.Push(op1 + op2)
+		case "-":
+			op2 := stack.Pop()
+			op1 := stack.Pop()
+			stack.Push(op1 - op2)
+		case "*":
+			op2 := stack.Pop()
+			op1 := stack.Pop()
+			stack.Push(op1 * op2)
+		case "/":
+			op2 := stack.Pop()
+			op1 := stack.Pop()
+			stack.Push(op1 / op2)
+		default:
+			num, _ := strconv.Atoi(token)
+			stack.Push(num)
+		}
+	}
+	return stack.Pop()
 }
 
 func evalRPNFunc(tokens []string) int {
-	ops := map[string]func(int, int) int {
-		"+": func(a int, b int) int {return a + b},
-		"-": func(a int, b int) int {return a - b},
-		"*": func(a int, b int) int {return a * b},
-		"/": func(a int, b int) int {return a / b},
+	ops := map[string]func(int, int) int{
+		"+": func(a int, b int) int { return a + b },
+		"-": func(a int, b int) int { return a - b },
+		"*": func(a int, b int) int { return a * b },
+		"/": func(a int, b int) int { return a / b },
 	}
 	stack := Stack{}
 	for _, token := range tokens {
@@ -133,7 +132,6 @@ type Test struct {
 
 // Global variable to prevent compiler optimizations
 var result int
-
 
 var benchmarkTests = []Test{
 	{[]string{"1"}, 1},

@@ -12,7 +12,7 @@ If a car catches up to a car fleet at the mile target, it will still be consider
 
 Return the number of car fleets that will arrive at the destination.
 
- 
+
 
 Example 1:
 
@@ -39,7 +39,7 @@ Output: 1
 Explanation:
 The cars starting at 0 (speed 4) and 2 (speed 2) become a fleet, meeting each other at 4. The car starting at 4 (speed 1) travels to 5.
 Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches target.
- 
+
 
 Constraints:
 n == position.length == speed.length
@@ -62,21 +62,20 @@ import (
 
 type CarData struct {
 	position []int
-	speed []int
+	speed    []int
 }
 
 // value receiver might be faster as it won't end up at the heap
-func (c CarData) Len() int {return len(c.position)}
-func (c CarData) Less(i, j int) bool {return c.position[i] > c.position[j]}
+func (c CarData) Len() int           { return len(c.position) }
+func (c CarData) Less(i, j int) bool { return c.position[i] > c.position[j] }
 func (c CarData) Swap(i, j int) {
 	c.position[i], c.position[j] = c.position[j], c.position[i]
 	c.speed[i], c.speed[j] = c.speed[j], c.speed[i]
 }
 
-
 func carFleet(target int, position []int, speed []int) int {
 	// Dont start at the beginning at 0, coz for car i to know if it catches car i+1 i would need to know
-	// if car i+1 catches up to a car i+x which i dont know at that point in time! 	 
+	// if car i+1 catches up to a car i+x which i dont know at that point in time!
 	n := len(position)
 	if n == 0 {
 		return 0
@@ -97,12 +96,12 @@ func carFleet(target int, position []int, speed []int) int {
 	return res
 }
 
-func main(){
+func main() {
 	// target := 12
 	// position := []int{10,8,0,5,3}
 	// speed := []int{2,4,1,1,3}
 	target := 10
-	position := []int{0,2,4}
+	position := []int{0, 2, 4}
 	speed := []int{2, 3, 1}
 	fmt.Println(carFleet(target, position, speed))
 	// fmt.Println(position)

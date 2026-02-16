@@ -30,17 +30,16 @@ package main
 
 import "fmt"
 
-
-func searchMatrix(matrix [][]int, target int) bool {	
-	l, r := 0, len(matrix) - 1
+func searchMatrix(matrix [][]int, target int) bool {
+	l, r := 0, len(matrix)-1
 	for l <= r {
-		m := l + (r - l) / 2
- 		innerArray := matrix[m]
- 		if target >= innerArray[0] && target <= innerArray[len(innerArray) - 1] {
+		m := l + (r-l)/2
+		innerArray := matrix[m]
+		if target >= innerArray[0] && target <= innerArray[len(innerArray)-1] {
 			// search inner array
-			l, r = 0, len(innerArray) - 1
+			l, r = 0, len(innerArray)-1
 			for l <= r {
-				m := l + (r - l) / 2
+				m := l + (r-l)/2
 				if target == innerArray[m] {
 					return true
 				} else if target < innerArray[m] {
@@ -48,22 +47,22 @@ func searchMatrix(matrix [][]int, target int) bool {
 				} else {
 					l = m + 1
 				}
-			}			
+			}
 			return false
- 		} else if target < innerArray[0] {
- 			r = m - 1
- 		} else {
- 			l = m + 1
- 		}
+		} else if target < innerArray[0] {
+			r = m - 1
+		} else {
+			l = m + 1
+		}
 	}
 	return false
 }
 
-func main(){
+func main() {
 	matrix := [][]int{
-		{1,2,4,8},
-		{10,11,12,13},
-		{14,20,30,40},
+		{1, 2, 4, 8},
+		{10, 11, 12, 13},
+		{14, 20, 30, 40},
 	}
 	target := 35
 	fmt.Println(searchMatrix(matrix, target))
